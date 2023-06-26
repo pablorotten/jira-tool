@@ -1,9 +1,19 @@
-body {
-  text-align: center;
-  background: black;
-  color: white;
+/* Global CSS variables */
+:root {
+  --spacing-company: 3rem;
+  --font-weight: 400;
+  --border-radius: 0;
 }
 
-h1 {
-  margin-top: 40vh;
+
+/* Header */
+.hero {
+  background-color: #394046;
+  background-image: url("../img/hero.jpeg");
+  background-position: center;
+  background-size: cover;
+}
+
+header {
+  padding: var(--spacing-company) 0;
 }

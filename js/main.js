@@ -2,18 +2,16 @@ console.log("hello world")
 
 function generateBase64() {
   var username = document.getElementById("username").value;
-  var password = document.getElementById("password").value;
+  var apiKey = document.getElementById("apiKey").value;
 
-  var credentials = username + ":" + password;
+  var credentials = username + ":" + apiKey;
   return btoa(credentials);
 }
 
-function tag() {
+function tagWithFetch() {
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  var base64 = generateBase64()
-  myHeaders.append("Authorization", "Basic " + base64);
-  myHeaders.append("Cookie", "atlassian.xsrf.token=BQU8-BJ0D-2S4S-4H4F_c21beea91b5c876563c6d6bda9a184016601d924_lin");
+  myHeaders.append("Authorization", "Basic " + generateBase64());
 
   var raw = JSON.stringify({
     "update": {
@@ -38,5 +36,35 @@ function tag() {
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
+
+}
+
+function tagWithXHR() {
+  var data = JSON.stringify({
+    "update": {
+      "fixVersions": [
+        {
+          "add": {
+            "name": "Edge.2023.3"
+          }
+        }
+      ]
+    }
+  });
+
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4) {
+      console.log(this.responseText);
+    }
+  });
+
+  xhr.open("PUT", "https://n-side.atlassian.net/rest/api/3/issue/EDGE-6892");
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("Authorization", "Basic " + generateBase64());
+
+  xhr.send(data);
 
 }

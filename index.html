@@ -3,7 +3,7 @@
 <head>
   <title>Jira tool</title>
   <link href="css/pico.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="css/style.css" rel="stylesheet">
   <link href="favicon.ico" rel="shortcut icon" type="image/png">
   <link href="favicon.ico" rel="apple-touch-icon">
 </head>
@@ -13,23 +13,22 @@
   <p>My supercool header</p>
 </header>
 <main class="container">
+    <label for="username">Username:</label>
+    <input autocomplete="on" id="username" name="username" type="text"><br><br>
 
-  <label for="username">Username:</label>
-  <input id="username" name="username" type="text"><br><br>
+    <label for="apiKey">Api key:</label>
+    <input autocomplete="on" id="apiKey" name="apiKey" type="text"><br><br>
 
-  <label for="password">Password:</label>
-  <input id="password" name="password" type="password"><br><br>
-
-  <label for="tagsInput">Tags:</label>
-  <textarea id="tagsInput" name="tagsInput" placeholder="tag1
+    <label for="tagsInput">Tags:</label>
+    <textarea id="tagsInput" name="tagsInput" placeholder="tag1
 tag2
 tag3
 tag4"></textarea><br><br>
 
-  <button onclick="tag()">Tag!</button>
-  <br><br>
+    <button onclick="tagWithXHR()">tagWithXHR</button>
+    <button onclick="tagWithFetch()">tagWithFetch</button>
 
-  <div id="tagsOutput"></div>
+    <div id="tagsOutput"></div>
 </main>
 <script src="js/main.js"></script>
 </body>
